@@ -24,7 +24,24 @@ a:hover{
 
 {% block content %}
 <h1>MENU</h1>
-
+<script type="text/javascript" charset="utf-8" async defer>
+  $( document ).ready(function() {
+    console.log( "ready!" );
+    $(".close").click(function(){
+      $(this).parent().remove();
+    });
+});
+</script>
+<div class="message_bin" style="position: fixed; bottom:0; right: 0; width:250px; z-index: 100;" >
+  {%for error in errors%}
+    <div class="alert alert-danger alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Error!</strong> 
+      {{error}}
+    </div>
+    {%endfor%}
+</div>
+  
   <div class="row">
     {%for menu in menus%}
     <div class="col-sm-3 add-margin-head">

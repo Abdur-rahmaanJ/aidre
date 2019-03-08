@@ -68,12 +68,23 @@
 
 <h1>EDITOR</h1>
 
-<script type="text/javascript">
-$(function() {
-    
-  });
+<script type="text/javascript" charset="utf-8" async defer>
+  $( document ).ready(function() {
+    console.log( "ready!" );
+    $(".close").click(function(){
+      $(this).parent().remove();
+    });
+});
 </script>
-  
+<div class="message_bin" style="position: fixed; bottom:0; right: 0; width:250px; z-index: 100;" >
+  {%for error in errors%}
+    <div class="alert alert-danger alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Error!</strong> 
+      {{error}}
+    </div>
+    {%endfor%}
+</div>
 <div class="container">
   <form 
     action="/editor" 
@@ -132,7 +143,6 @@ $(function() {
       accept-charset="utf-8">
       
         <div class="card-header">
-          <button type="submit" class="btn btn-info">save</button>  
           <button type="button" class="btn btn-primary">
             Record number <span class="badge badge-light">{{s[2]}}</span>
           </button>
@@ -146,7 +156,8 @@ $(function() {
            <hr> 
           <div class="card-body">
             <span class="badge badge-success">translated</span><br>
-            <textarea class="form-control" rows="5" id="" name="modified_str">{{s[1]}}</textarea>
+            <textarea class="form-control" rows="5" id="" name="modified_str">{{s[1]}}</textarea><br>
+            <button type="submit" class="btn btn-success">save</button>  
         </div>
       </form>
     </div><br>

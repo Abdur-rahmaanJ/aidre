@@ -16,25 +16,36 @@ MENUS = [
     ['STATS', 'stats for translation repo', '#', 'fas fa-chart-pie'],
 ]
 
+
 @app.route('/')
 def index():
-    return render_template('index.html', menus=MENUS)
+    return render_template('index.html', menus=MENUS, errors=['fwefwwgw', 'wgeweg'])
+
 
 @app.route('/editor', methods=['GET', 'POST'])
 def list_strings():
     global path_now
+    errors = []
+    translated = ''
     if request.method == 'POST':
-        strings = []
-        fpath = request.form['fpath']
-        path_now = fpath
-        po = polib.pofile(fpath)
-        translated = po.percent_translated()
-        for i, entry in enumerate(po):
-            strings.append([entry.msgid, entry.msgstr, i+1])
-        return render_template('editor.html', 
-            strings=strings, path=fpath, 
-            translated=translated)
-    return render_template('editor.html', strings=[], path='', translated='---')
+        try:
+            strings = []
+            fpath = request.form['fpath']
+            path_now = fpath
+            po = polib.pofile(fpath)
+            translated = po.percent_translated()
+            for i, entry in enumerate(po):
+                strings.append([entry.msgid, entry.msgstr, i+1])
+        except OSError:
+            errors.append('wrong path')
+        except Exception as e:
+            errors.append(e)
+        return render_template(
+            'editor.html', strings=strings, path=fpath,
+            translated=translated, errors=errors)
+    return render_template(
+        'editor.html', strings=[], path='', translated='---', errors=[])
+
 
 @app.route('/modify', methods=['GET', 'POST'])
 def modify_id():
@@ -42,7 +53,7 @@ def modify_id():
     if request.method == 'POST':
         strings = []
 
-        fpath = path_now # request.form['fpath']
+        fpath = path_now  # request.form['fpath']
         msg_id = request.form['msg_id']
         modified_str = request.form['modified_str']
 
@@ -55,11 +66,10 @@ def modify_id():
         for i, entry in enumerate(po):
             strings.append([entry.msgid, entry.msgstr, i+1])
 
-        return render_template('editor.html', 
-            strings=strings, path=fpath, 
-            translated=translated)
+        return render_template(
+            'editor.html', strings=strings, path=fpath,
+            translated=translated, errors=[])
     return ''
-
 
 
 if __name__ == '__main__':
