@@ -8,3 +8,7 @@ initiated with the full support of the french translation team
 ![text](assets/aidre_1.gif)
 #
 ![text](assets/aidre_2.gif)
+
+# Dependencies
+
+polib
