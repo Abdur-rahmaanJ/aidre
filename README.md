@@ -10,9 +10,12 @@ initiated with the full support of the french translation team
 ![text](assets/aidre_2.gif)
 
 # Dependencies
-
-polib
+* polib
+* flask
 
 # stability : warning
 
 absolutely no safety net
+
+# credits
+- Sergio Pedercini: Percentage Completion Chart
