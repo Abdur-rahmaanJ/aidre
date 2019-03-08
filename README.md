@@ -12,3 +12,7 @@ initiated with the full support of the french translation team
 # Dependencies
 
 polib
+
+# stability : warning
+
+absolutely no safety net
