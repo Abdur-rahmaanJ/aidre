@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="/static/fontawesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/static/jquery-3.2.1.min.js">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}">-->
+
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+
+<style type="text/css">
+.suggest{
+  
+}
+
+.suggest span{
+  padding-left: 5px; padding-right: 5px;
+  margin: 5px;
+  min-width: 50px;
+}
+li i{
+  font-size: 30px;
+}
+li{
+  margin-right: 10px; 
+}
+
+</style>
+{% block pagehead %}{% endblock %}
+</head>
+<body class="bg-light">
+
+<div class="container">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+    <a class="navbar-brand" href="/">
+      <i class="fab fa-python"></i> AIDRE - PYTHON TRANSLATION HELP STATION
+    </a>
+
+</nav><br>
+{% block content %}{% endblock %}
+</div>
+</body>
+</html>
+

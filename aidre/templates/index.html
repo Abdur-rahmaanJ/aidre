@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block pagehead %}
+<title>aidre - menu</title>
+<style type="text/css" media="screen">
+.add-margin-head{
+  margin-top:30px;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+a:hover{
+  text-decoration: none;
+  color: inherit;
+}
+
+.menu-icon > i{
+  font-size: 50px;
+  color: #306998;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>MENU</h1>
+
+  <div class="row">
+    {%for menu in menus%}
+    <div class="col-sm-3 add-margin-head">
+      <a href="{{menu[2]}}" title="">
+        <div class="card">
+            <div class="card-header text-light" style="background-color: #4b8bbe"> 
+                {{menu[0]}}
+            </div>
+            <div class="card-body menu-icon" 
+            style="text-align: center; background-color: #ffe873">
+                <i class="{{menu[3]}}"></i>
+            </div>
+            <div class="card-footer text-light" style="background-color: #4b8bbe">
+              {{menu[1]}}
+            </div>
+        </div>
+      </a>
+    </div>
+    {%endfor%}
+  </div>
+
+
+{% endblock %}
