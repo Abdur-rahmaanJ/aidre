@@ -49,7 +49,7 @@ def list_strings():
 
 @app.route('/stats')
 def stats():
-    return render_template('stats.html')
+    return render_template('stats.html',issues=['Issue1', 'Issue2','Issue3'])
 
 @app.route('/modify', methods=['GET', 'POST'])
 def modify_id():
