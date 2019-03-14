@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block pagehead %}
+    <title>aidre - stats</title>
+    <style type="text/css" media="screen">
+
+        /* Doughnut Chart */
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .chart-text {
+            /*font: 16px/1.4em "Montserrat", Arial, sans-serif;*/
+            fill: #000;
+            -moz-transform: translateY(0.25em);
+            -ms-transform: translateY(0.25em);
+            -webkit-transform: translateY(0.25em);
+            transform: translateY(0.25em);
+        }
+        .chart-number {
+            font-size: 0.6em;
+            line-height: 1;
+            text-anchor: middle;
+            -moz-transform: translateY(-0.25em);
+            -ms-transform: translateY(-0.25em);
+            -webkit-transform: translateY(-0.25em);
+            transform: translateY(-0.25em);
+        }
+        .chart-label {
+            font-size: 0.2em;
+            text-transform: uppercase;
+            text-anchor: middle;
+            -moz-transform: translateY(0.7em);
+            -ms-transform: translateY(0.7em);
+            -webkit-transform: translateY(0.7em);
+            transform: translateY(0.7em);
+        }
+        figure {
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        @media (min-width: 768px) {
+        figure {
+            flex-direction: row;
+        }
+        }
+        .figure-content {
+            flex: 1;
+            padding-left: 15px;
+            padding-right: 15px;
+            align-self: center;
+        }
+        .figure-content svg {
+         height: auto;
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="text-center display-4">STATS</h1>
+    <div class="col-sm-6 offset-sm-3 mb-4"> 
+        <h3 class="text-center">Issues Stats</h3>
+        <figure>
+            <div class="figure-content">
+                <svg width="100%" height="100%" viewBox="0 0 42 42" >
+                <circle  cx="21" cy="21" r="15.91549430918954" fill="transparent" ></circle>
+                <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4" stroke-width="3" ></circle>
+            
+                <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="red" stroke-width="3" stroke-dasharray="10 90" stroke-dashoffset="0">
+                    <title >Closed Issues</title>
+                </circle>
+                <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="green" stroke-width="3" stroke-dasharray="90 10" stroke-dashoffset="90">
+                    <title>Open Issues</title>
+                </circle>
+                <!-- unused 10% -->
+                <g class="chart-text">
+                    <text x="50%" y="50%" class="chart-number">
+                    200
+                    </text>
+                    <text x="50%" y="50%" class="chart-label">
+                    Issues
+                    </text>
+                </g>
+                </svg>
+            </div>
+        </figure>
+        <h5 class="text-center">Open Issues:20 Closed Issues:180</h5>
+    </div>
+
+    <h3 class="text-center">Issues</h3>
+    {%for issue in issues%}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{issue}}</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus tenetur velit dolorem dolore, aliquid quam doloremque repudiandae id ipsa animi odio temporibus quisquam maxime deserunt quis sunt. Assumenda, obcaecati doloremque..</p>
+                <p class="card-text"><small class="text-muted">Opened x hours ago by xxx</small></p>
+            </div>
+        </div>
+    {%endfor%}
+
+{% endblock %}

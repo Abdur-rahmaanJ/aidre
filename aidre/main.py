@@ -13,7 +13,7 @@ MENUS = [
     ['ADD FORK', 'add fork to software', '#', 'fas fa-plus-square'],
     ['BROWSE FORK', 'browse added forks', '#', 'fas fa-ship'],
     ['SYNCHRONISE FORK', 'update from original repo', '#', 'fas fa-sync'],
-    ['STATS', 'stats for translation repo', '#', 'fas fa-chart-pie'],
+    ['STATS', 'stats for translation repo', '/stats', 'fas fa-chart-pie'],
 ]
 
 
@@ -46,6 +46,10 @@ def list_strings():
     return render_template(
         'editor.html', strings=[], path='', translated='---', errors=[])
 
+
+@app.route('/stats')
+def stats():
+    return render_template('stats.html',issues=['Issue1', 'Issue2','Issue3'])
 
 @app.route('/modify', methods=['GET', 'POST'])
 def modify_id():
