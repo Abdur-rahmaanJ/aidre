@@ -73,16 +73,14 @@
                 <circle  cx="21" cy="21" r="15.91549430918954" fill="transparent" ></circle>
                 <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4" stroke-width="3" ></circle>
             
-                <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="red" stroke-width="3" stroke-dasharray="10 90" stroke-dashoffset="0">
-                    <title >Closed Issues</title>
-                </circle>
-                <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="green" stroke-width="3" stroke-dasharray="90 10" stroke-dashoffset="90">
+                
+                <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="green" stroke-width="3" stroke-dasharray="{{percent_closed}} {{percent_open}}" stroke-dashoffset="90">
                     <title>Open Issues</title>
                 </circle>
                 <!-- unused 10% -->
                 <g class="chart-text">
                     <text x="50%" y="50%" class="chart-number">
-                    200
+                    {{num_issues}}
                     </text>
                     <text x="50%" y="50%" class="chart-label">
                     Issues
@@ -91,7 +89,7 @@
                 </svg>
             </div>
         </figure>
-        <h5 class="text-center">Open Issues:20 Closed Issues:180</h5>
+        <h5 class="text-center">Open Issues:{{num_open}} | Closed Issues:{{num_closed}}</h5>
     </div>
 
     <h3 class="text-center">Issues</h3>

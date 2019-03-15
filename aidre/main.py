@@ -2,6 +2,9 @@ from flask import (
     Flask, redirect, url_for, render_template, request
     )
 import polib
+from github import Github
+from translate import Translator
+
 
 app = Flask(__name__)
 
@@ -34,8 +37,10 @@ def list_strings():
             path_now = fpath
             po = polib.pofile(fpath)
             translated = po.percent_translated()
+            translator = Translator(to_lang="ar")
             for i, entry in enumerate(po):
-                strings.append([entry.msgid, entry.msgstr, i+1])
+                suggest = translator.translate(entry.msgid)
+                strings.append([entry.msgid, entry.msgstr, i+1, suggest])
         except OSError:
             errors.append('wrong path')
         except Exception as e:
@@ -49,7 +54,19 @@ def list_strings():
 
 @app.route('/stats')
 def stats():
-    return render_template('stats.html',issues=['Issue1', 'Issue2','Issue3'])
+
+    num_open = 210
+    num_closed = 10
+    num_issues = num_open + num_closed
+    percent_open = (num_open/num_issues) * 100
+    percent_closed = (num_closed/num_issues) * 100
+    return render_template('stats.html',
+        issues=['Issue1', 'Issue2','Issue3'],
+        num_open=num_open,
+        num_closed=num_closed,
+        num_issues=num_issues,
+        percent_open=percent_open,
+        percent_closed=percent_closed)
 
 @app.route('/modify', methods=['GET', 'POST'])
 def modify_id():
