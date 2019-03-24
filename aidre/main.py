@@ -4,7 +4,7 @@ from flask import (
 import polib
 from github import Github
 from translate import Translator
-
+import urllib
 
 app = Flask(__name__)
 
@@ -28,8 +28,12 @@ def index():
 @app.route('/editor', methods=['GET', 'POST'])
 def list_strings():
     global path_now
+    global errors
     errors = []
-    translated = ''
+    if check_internet() == -1:
+        errors.append('internet not available')
+        return render_template(
+            'editor.html', errors=['internet not available'])
     if request.method == 'POST':
         try:
             strings = []
@@ -91,7 +95,16 @@ def modify_id():
             'editor.html', strings=strings, path=fpath,
             translated=translated, errors=[])
     return ''
-
+    
+def check_internet(): 
+    errors.append('internet not available')
+    try :
+        url = "https://www.google.com"
+        urllib.urlopen(url)
+        return 0
+    except:
+        return -1
+        
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
