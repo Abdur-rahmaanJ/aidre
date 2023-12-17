@@ -19,6 +19,14 @@ MENUS = [
     ['STATS', 'stats for translation repo', '/stats', 'fas fa-chart-pie'],
 ]
 
+def check_internet(): 
+    errors.append('internet not available')
+    try :
+        url = "https://www.google.com"
+        urllib.urlopen(url)
+        return 0
+    except:
+        return -1
 
 @app.route('/')
 def index():
@@ -95,15 +103,6 @@ def modify_id():
             'editor.html', strings=strings, path=fpath,
             translated=translated, errors=[])
     return ''
-    
-def check_internet(): 
-    errors.append('internet not available')
-    try :
-        url = "https://www.google.com"
-        urllib.urlopen(url)
-        return 0
-    except:
-        return -1
         
 
 if __name__ == '__main__':
